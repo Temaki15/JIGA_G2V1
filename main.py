@@ -1,10 +1,9 @@
 import serial.tools.list_ports
-import time
 import serial
 import threading
 import binascii
 import flet as ft
-
+from time import sleep
 # def pop_error(txt_alert):
 #     ft.AlertDialog(txt_alert)
 
@@ -261,7 +260,8 @@ def main(page: ft.Page):
                                             [
                                                 ft.ElevatedButton("Teste Automático", on_click=lambda _: page.go("/teste"), bgcolor="#333333"),
                                                 ft.ElevatedButton("Acionamento e Leitura RT", on_click=lambda _: page.go("/acionamentos"), bgcolor="#333333"),
-                                                ft.ElevatedButton("Piroca de batata", on_click=lambda _: page.go("/piroca"), bgcolor="#333333")
+                                                ft.ElevatedButton("configurações", on_click=lambda _: page.go("/configurações"), bgcolor="#333333"),
+                                                # ft.ElevatedButton("Configurações", on_click=ft.AlertDialog(title = "HJFKJHKJHKJHK"), bgcolor="#333333")
                                             ],
                                             bottom = 10,
                                             width = 700,
@@ -291,6 +291,41 @@ def main(page: ft.Page):
                     [
                         ft.AppBar(
                             title=ft.Text("Teste Automático"),
+                            bgcolor="#252525",
+                            leading = ft.IconButton(
+                                icon=ft.icons.ARROW_BACK,
+                                icon_color="#ddac13",
+                                icon_size=20,
+                                tooltip="Voltar",
+                                on_click=lambda _: page.go("/"),
+                            ),
+                        ),
+
+                        # ft.Container(
+                        #     bgcolor = ft.colors.WHITE,
+                        #     padding = 0,
+                        #     margin=ft.margin.all(-10),
+                        #     image_src="/images/abstract_bg.jpg",
+                        #     image_fit = ft.ImageFit.COVER,
+                        #     width = 1024,
+                        #     height = 600,
+                        #     expand=True,
+                        #     alignment = ft.alignment.center,
+                        #     content =()                             
+                        # ),
+                    ],
+                )
+            )
+        page.update()
+
+
+        if page.route == "/acionamentos":
+            page.views.append(
+                ft.View(
+                    "/acionamentos",
+                    [
+                        ft.AppBar(
+                            title=ft.Text("Acionamentos e Leituras RT"),
                             bgcolor="#252525",
                             leading = ft.IconButton(
                                 icon=ft.icons.ARROW_BACK,
